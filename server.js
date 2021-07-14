@@ -2,6 +2,7 @@ require('./index');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require("cors");
+var port = process.env.PORT || 3000;
 
 var app = express();
 app.use(cors());
@@ -14,4 +15,4 @@ app.use(bodyParser.json());
 app.use('/sales',salesRoutes);
 app.use('/purchase',purchasesRoutes);
 
-app.listen(4000,()=>console.log('Server Started at 4000'));
+app.listen(port,()=>console.log('Server Started at 4000'));
