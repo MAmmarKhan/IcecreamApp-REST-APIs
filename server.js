@@ -1,13 +1,17 @@
-const dotenv = require('dotenv');
-dotenv.config();
-const Mongoose = require("mongoose")
+require('./index');
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require("cors");
 
-Mongoose.connect(process.env.mongdbURL,{useNewUrlParser:true,useUnifiedTopology:true} ,err => 
-{
-    if(!err)
-        console.log("Mongodb ATLAS Connection succeded");
-    else
-        console.log("Mongodb ATLAS Connection failed");
-});  
+var app = express();
+app.use(cors());
+app.get("/", (req, res) => {
+    res.json({ message: "Welcome to CRUD application." });
+  });
+var salesRoutes = require('./controllers/sales_controller');
+var purchasesRoutes = require('./controllers/purchases_controller');
+app.use(bodyParser.json());
+app.use('/sales',salesRoutes);
+app.use('/purchase',purchasesRoutes);
 
-
+app.listen(4000,()=>console.log('Server Started at 4000'));
