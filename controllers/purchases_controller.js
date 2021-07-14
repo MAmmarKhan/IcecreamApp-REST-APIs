@@ -1,7 +1,7 @@
 const express = require('express');
 var router = express.Router();
 
-var { Purchase } = require('../models/Purchase');
+var { Purchase } = require('../models/purchase');
 
 class APIfeatures{
     constructor(query,queryString){
